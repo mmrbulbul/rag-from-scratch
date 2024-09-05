@@ -1,0 +1,15 @@
+torch
+transformers
+langchain
+sentence-transformers
+tqdm
+openpyxl
+openai
+pandas
+datasets
+langchain-community
+tiktoken
+langchain-openai
+langchainhub
+chromadb
+ragatouille
