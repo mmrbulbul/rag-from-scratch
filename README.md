@@ -1,2 +1,2 @@
-Practice repo to build rag systems from scratch and evaluate them.
+Practice repo to build various rag systems and evaluate them.
 
