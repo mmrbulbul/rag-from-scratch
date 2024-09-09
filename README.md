@@ -2,6 +2,7 @@ Practice repo to build various rag systems and evaluate them.
 
 
 ## Environment preparation
+
 1. Pull the docker image 
     ```bash 
     docker pull huggingface/transformers-pytorch-gpu
@@ -20,3 +21,8 @@ Practice repo to build various rag systems and evaluate them.
     ```
 4. Save the container as a new image if necessary.
 
+## Running chat-app
+
+```bash
+streamlit run app.py
+```
