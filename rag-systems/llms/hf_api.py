@@ -60,7 +60,7 @@ pipe = pipeline(
 # # system_template = "You are a helpful AI assistant."
 messages = [
     {"role": "system", "content": "You are a helpful AI assistant. Answer only what you have been asked"},
-    {"role": "user", "content": "Solve 2x + 3 = 7"}
+    {"role": "user", "content": "日本語わかりますか？"}
 ]
 
 
