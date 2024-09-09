@@ -17,5 +17,8 @@ langchain-openai
 langchainhub
 chromadb
 ragatouille
+
 isort
 autopep8
+
+streamlit
