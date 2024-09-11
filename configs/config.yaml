@@ -1,0 +1,17 @@
+
+
+
+
+dataset:
+  type:  text #huggingface # accepted dataset [pdf, txt, huggingface]
+  name: ./requirements.txt # "m-ric/huggingface_doc"
+  split: train
+
+  text_splitter:
+    type: recursive
+    params:
+      chunk_size: 2000
+      chunk_overlap: 200
+
+qa_generation:
+  n_questions: 10
