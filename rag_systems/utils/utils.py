@@ -34,3 +34,9 @@ def supports_flash_attention(device_id):
     is_sm90 = major == 9 and minor == 0
 
     return is_sm8x or is_sm90
+
+
+def get_config(filename="config.yaml"):
+    with open(filename, "r") as file:
+        config = yaml.safe_load(file)
+    return config
