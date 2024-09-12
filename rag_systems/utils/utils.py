@@ -3,6 +3,8 @@ import os
 import torch
 import yaml
 
+from rag_systems.utils.prompt_templates import *
+
 LANGCHAIN_ENDPOINT = "https://api.smith.langchain.com"
 
 
@@ -40,3 +42,28 @@ def get_config(filename="config.yaml"):
     with open(filename, "r") as file:
         config = yaml.safe_load(file)
     return config
+
+
+def call_llm(llm_agent, prompt):
+    """_summary_
+
+    Args:
+        llm_agent : Hugging face pipeline
+        prompt : prompt to generate
+    """
+
+    output = llm_agent(prompt)
+    return output[0]['generated_text']
+
+
+def create_prompt(prompt_template=default_prompt,
+                  system="", question="", context=""):
+
+    if system != "":
+        prompt_template[0].update({"content": system})
+    if question != "":
+        prompt_template[1].update({"content": question})
+    if context != "":
+        prompt_template[2].update({"content": context})
+
+    return prompt_template
