@@ -15,7 +15,6 @@ from transformers import (AutoModelForCausalLM, AutoTokenizer,
 warnings.filterwarnings('ignore')
 
 torch.random.manual_seed(0)
-langchain.debug = True
 
 nf4_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -41,12 +40,29 @@ tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-128k-instruct")
 generation_args = {
     "max_new_tokens": 512,
     "return_full_text": False,
-    "do_sample": False,
-    "temperature": 0.0,
+    "do_sample": True,
+    "temperature": 0.7,
 
 }
 
-pipe = pipeline(
+
+messages = [
+    {
+        "role": "system",
+        "content": "You are GoodBot, You are a helpful assistant.",
+    },
+    {
+        "role": "user",
+        "content": "who are you?"
+    }
+
+]
+
+tokenizer.use_default_system_prompt = True
+tokenizer.chat_template = "{{ bos_token }}{% for message in messages %}\n{% if message['role'] == 'user' %}\n{{ '<|user|>\n' + message['content'] + '<|end|>' }}\n{% elif message['role'] == 'system' %}\n{{ '<|system|>\n' + message['content'] + '<|end|>' }}\n{% elif message['role'] == 'assistant' %}\n{{ '<|assistant|>\n'  + message['content'] + '<|end|>' }}\n{% endif %}\n{% if loop.last and add_generation_prompt %}\n{{ '<|assistant|>' }}\n{% endif %}\n{% endfor %}"
+
+
+llm_agent = pipeline(
     "text-generation",
     model=model,
     tokenizer=tokenizer,
@@ -54,19 +70,8 @@ pipe = pipeline(
 )
 
 
-llm = HuggingFacePipeline(pipeline=pipe)
+# llm = HuggingFacePipeline(pipeline=pipe)
 
 
 if __name__ == "__main__":
-    # # system_template = "You are a helpful AI assistant."
-    messages = [
-        {"role": "system", "content": "You are a helpful AI assistant. Answer only what you have been asked"},
-        {"role": "user", "content": ""}
-    ]
-
-    # print(llm.invoke(messages))
-
-    # print("*"*100)
-    # print("\n")
-    output = pipe(messages)
-    print(output[0]['generated_text'])
+    pass
