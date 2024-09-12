@@ -3,7 +3,7 @@ import os
 import torch
 import yaml
 
-from rag_systems.utils.prompt_templates import *
+from rag_systems.utils.prompt_templates import default_prompt
 
 LANGCHAIN_ENDPOINT = "https://api.smith.langchain.com"
 
