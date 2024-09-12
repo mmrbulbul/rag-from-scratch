@@ -6,27 +6,8 @@ import random
 
 from tqdm import tqdm
 
-QA_generation_prompt = """
-Your task is to write a factoid question and an answer given a context.
-Your factoid question should be answerable with a specific, concise piece of factual information from the context.
-Your factoid question should be formulated in the same style as questions users could ask in a search engine.
-This means that your factoid question MUST NOT mention something like "according to the passage" or "context".
-
-Provide your answer as follows:
-
-Output:::
-Factoid question: (your factoid question)
-Answer: (your answer to the factoid question)
-
-Now here is the context.
-
-Context: {context}\n
-Output:::"""
-
-
-def call_llm(llm_client, prompt):
-
-    raise NotImplementedError
+from rag_systems.utils.prompt_templates import QA_generation_prompt
+from rag_systems.utils.utils import call_llm, create_prompt
 
 
 class QAGenerator:
@@ -38,10 +19,14 @@ class QAGenerator:
         print(f"Generating {self.n_quations} QA couples...")
 
         outputs = []
-        for sampled_context in tqdm(random.sample(docs_processed, self.n_quations)):
+        for sampled_context in tqdm(random.sample(docs_processed,
+                                                  self.n_quations)):
             # Generate QA couple
-            output_QA_couple = call_llm(llm_client, QA_generation_prompt.format(
-                context=sampled_context.page_content))
+            output_QA_couple = call_llm(
+                llm_client,
+                create_prompt(
+                    prompt_template=QA_generation_prompt,
+                    context=sampled_context.page_content))
             try:
                 question = output_QA_couple.split(
                     "Factoid question: ")[-1].split("Answer: ")[0]
