@@ -24,5 +24,5 @@ Practice repo to build various rag systems and evaluate them.
 ## Running chat-app
 
 ```bash
-streamlit run app.py
+streamlit run chat_app.py
 ```
