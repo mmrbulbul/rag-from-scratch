@@ -1,0 +1,57 @@
+[build-system]
+requires = [ "setuptools>=42", "wheel",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag_systems"
+version = "0.1.0-dev"
+description = ""
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent",]
+dependencies = [
+    "torch",
+    "transformers",
+    "bitsandbytes",
+    "peft",
+    "accelerate",
+    "flash-attn",
+    "langchain",
+    "sentence-transformers",
+    "tqdm",
+    "openpyxl",
+    "openai",
+    "pandas",
+    "datasets",
+    "langchain-community",
+    "tiktoken",
+    "langchain-openai",
+    "langchainhub",
+    "chromadb",
+    "ragatouille",
+    "isort",
+    "autopep8",
+    "streamlit",
+    "pypdf",
+    "tiktoken",
+    "langchain-openai",
+    "langchainhub",
+    "langchain",
+    "langchain_experimental",
+    "langchain_ollama",
+    "langchain-huggingface",
+    "json-repair"
+    "pyvis",
+    "networkx"
+
+]
+
+[[project.authors]]
+name = "Md. Muklasur Rahman Bulbul"
+email = "mmrbulbul@gmail.com"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/mmrbulbul/rag-systems"
